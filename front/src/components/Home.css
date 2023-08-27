@@ -101,7 +101,7 @@
 @media (max-width: 768px) {
   .chat-container {
     width: 80%;
-    height: 60%;
+    height: 80%;
     position: absolute;
     bottom: 0; /* Fixa no rodapé */
     left: 10px;
