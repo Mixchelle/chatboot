@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import logo from '../img/logo.png';
 import axios from 'axios'; 
+import users from './users.json';
 import './Login.Style.css';
 
 const Login = () => {
@@ -26,36 +27,37 @@ const Login = () => {
     navigate('/cadastrar');
   };
 
-  const handleEntrarClick = async () => {
-    try {
-      localStorage.setItem('username', login);
+  // const handleEntrarClick = async () => {
+  //   try {
+  //     localStorage.setItem('username', login);
 
-      const response = await axios.post('http://localhost:3001/login', {
-        username: login,
-        password: password,
-      });
+  //     const response = await axios.post('http://localhost:3001/login', {
+  //       username: login,
+  //       password: password,
+  //     });
 
-      if (response.status === 200) {
+  //     if (response.status === 200) {
          
-        navigate('/home');
-      } else {
-        alert('Erro ao fazer login. Credenciais inválidas.');
-      }
-    } catch (error) {
-      console.error(error);
-      alert('Erro ao fazer login. Verifique a conexão com o servidor.');
+  //       navigate('/home');
+  //     } else {
+  //       alert('Erro ao fazer login. Credenciais inválidas.');
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert('Erro ao fazer login. Verifique a conexão com o servidor.');
+  //   }
+  // };
+
+  const handleEntrarClick = () => {
+    const user = users.find((user) => user.username === login && user.password === password);
+
+    if (user) {
+      localStorage.setItem('username', login);
+      navigate('/home');
+    } else {
+      alert('Erro ao fazer login. Credenciais inválidas.');
     }
   };
-
-  // Verificando se o usuário já marcou a opção "Gravar Senha" em acessos anteriores
-  React.useEffect(() => {
-    const rememberedLogin = localStorage.getItem('rememberedLogin');
-    const rememberedPassword = localStorage.getItem('rememberedPassword');
-    if (rememberedLogin && rememberedPassword) {
-      setLogin(rememberedLogin);
-      setPassword(rememberedPassword);
-    }
-  }, []);
 
   return (
 

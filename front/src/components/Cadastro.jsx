@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import logo from '../img/logo.png';
+import users from './users.json';
+
 
 import './Cadastro.Style.css';
 import { useNavigate } from 'react-router-dom';
@@ -18,6 +20,36 @@ const Cadastro = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
 
+  // const handleSignUp = async () => {
+  //   if (password !== confirmPassword) {
+  //     setErrorMessage("As senhas digitadas não são iguais.");
+  //     return;
+  //   }
+
+  //   try {
+  //     const response = await fetch("http://localhost:3001/register", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         username: login,
+  //         password: password,
+  //       }),
+  //     });
+
+  //     if (response.ok) {
+  //       setSuccessMessage("Cadastro realizado com sucesso!");
+  //       navigate('/');
+  //     } else {
+  //       setErrorMessage("Ocorreu um erro no cadastro.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //     setErrorMessage("Ocorreu um erro no cadastro.");
+  //   }
+  // };
+
   const handleSignUp = async () => {
     if (password !== confirmPassword) {
       setErrorMessage("As senhas digitadas não são iguais.");
@@ -25,29 +57,24 @@ const Cadastro = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3001/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: login,
-          password: password,
-        }),
-      });
-
-      if (response.ok) {
-        setSuccessMessage("Cadastro realizado com sucesso!");
-        navigate('/');
-      } else {
-        setErrorMessage("Ocorreu um erro no cadastro.");
+      const existingUser = users.find((user) => user.username === login);
+      if (existingUser) {
+        setErrorMessage("Usuário já existe. Tente um nome de usuário diferente.");
+        return;
       }
+
+      const newUser = { login, password };
+      users.push(newUser);
+
+      localStorage.setItem('users', JSON.stringify(users));
+
+      setSuccessMessage("Cadastro realizado com sucesso!");
+      navigate('/');
     } catch (error) {
       console.error("Error:", error);
       setErrorMessage("Ocorreu um erro no cadastro.");
     }
   };
-
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
