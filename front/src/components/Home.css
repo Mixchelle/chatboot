@@ -121,9 +121,10 @@
     padding: 10px;
     background-color: #fff;
     border-top: 1px solid #ccc;
-    position: fixed;
+    position: absolute;
     margin-bottom: 10px;
-    margin-top: 90%;
+    margin-top: 180%;
+    margin-bottom: 10px;
     width: 75%;
   }
 
