@@ -49,8 +49,10 @@ const Login = () => {
   // };
 
   const handleEntrarClick = () => {
-    const user = users.find((user) => user.username === login && user.password === password);
+    localStorage.setItem('username', login);
+    navigate('/home');
 
+    const user = users.find((user) => user.username === login && user.password === password);
     if (user) {
       localStorage.setItem('username', login);
       navigate('/home');
@@ -69,6 +71,7 @@ const Login = () => {
         <img style={{ width: '50px', borderRadius: '50%', textAlign: 'center', justifyContent: 'center', }} src={logo} alt="logo" />
           Sign Up</h1>
         <div className="input-div">
+        <label>Login:</label>
           <input
             className="form--input"
             type="text"
