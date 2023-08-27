@@ -14,6 +14,7 @@ const Header = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('username');
+
   };
 
   const getUsername = () => {
@@ -31,7 +32,7 @@ const Header = () => {
           <h4>
             {getUsername()}
             {'  '}
-            <FaUser className="user-icon" />
+           
             </h4>
             
         ) : (
