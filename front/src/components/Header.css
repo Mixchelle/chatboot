@@ -21,4 +21,9 @@
   cursor: pointer;
 }
 
+.sign-out-icon {
+  background-color: transparent; /* Torna o fundo do ícone transparente */
+  font-size: 1.25em; /* Ajuste o tamanho do ícone conforme necessário */
+  vertical-align: middle; /* Alinhar verticalmente com o texto */
+}
 

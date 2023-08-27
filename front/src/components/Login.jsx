@@ -63,9 +63,9 @@ const Login = () => {
       
       <form className="form">
       
-        <span className="signup">
+        <h1>
         <img style={{ width: '50px', borderRadius: '50%', textAlign: 'center', justifyContent: 'center', }} src={logo} alt="logo" />
-          Sign Up</span>
+          Sign Up</h1>
         <div className="input-div">
           <input
             className="form--input"

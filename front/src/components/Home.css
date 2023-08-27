@@ -99,10 +99,47 @@
 
 
 @media (max-width: 768px) {
-  .chat-container{
+  .chat-container {
     width: 80%;
+    height: 80%;
+    position: absolute;
+    bottom: 0; /* Fixa no rodapé */
+    left: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column; /* Alinha os elementos verticalmente */
   }
-  .message-text{
-    font-size: small ;
+
+  .message-text {
+    font-size: small;
+  }
+
+  .chat-input {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    position: fixed;
+    margin-bottom: 10px;
+    margin-top: 620px;
+    width: 75%;
+  }
+
+  .chat-input input[type="text"] {
+    flex: 1; /* O input ocupará o espaço disponível */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .chat-input button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #639;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
   }
 }

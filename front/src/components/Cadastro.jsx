@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import logo from '../img/logo.png';
+
 import './Cadastro.Style.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -58,7 +60,9 @@ const Cadastro = () => {
   return (
     <div className="container">
     <form className="form">
-      <h1>Cadastrar</h1>
+      <h1>
+      <img style={{ width: '50px', borderRadius: '50%', textAlign: 'center', justifyContent: 'center', }} src={logo} alt="logo" />
+        Cadastrar</h1>
       <div className="input-div">
         <label>Login:</label>
         <input

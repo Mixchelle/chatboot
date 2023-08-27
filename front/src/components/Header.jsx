@@ -1,15 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {  FaUser } from 'react-icons/fa';
-import logo from '../img/logo.png';
+import { FaUser, FaSignOutAlt } from 'react-icons/fa';import logo from '../img/logo.png';
 
 import './Header.css';
 
 const Header = () => {
+
   const isUserLoggedIn = () => {
     // Verifica se o usuário está logado
     const username = localStorage.getItem('username');
     return !!username; // Retorna true se o username existir
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('username');
+    alert('saiu');
   };
 
   const getUsername = () => {
@@ -31,11 +36,16 @@ const Header = () => {
             </h4>
             
         ) : (
-          <Link to="/login">
+          <Link to="/">
             <button>Login</button>
           </Link>
         )}
       </div>
+      <Link to="/">
+            <button onClick={ handleLogout}>
+              <FaSignOutAlt className="user-icon" />
+            </button>
+          </Link>
     </div>
   );
 };
