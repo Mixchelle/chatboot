@@ -14,7 +14,6 @@ const Header = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('username');
-    alert('saiu');
   };
 
   const getUsername = () => {
