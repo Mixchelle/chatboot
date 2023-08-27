@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import responses from './chatbotResponses'; 
 import Header from './Header';
-import { IoIosMicrophone } from 'react-icons/io';
 import userImage from '../img/user.png'; 
 import botImage from '../img/atendente.jpeg';   
 
@@ -44,23 +43,12 @@ const Home = () => {
     setConversation((prevConversation) => [...prevConversation, botMessage]);
   };
 
-  function normalizeText(text) {
-    return text
-      .toLowerCase() 
-      .normalize('NFD') 
-      .replace(/[\u0300-\u036f]/g, ''); 
-  }
-  
-  function findResponse(keyword) {
-    const normalizedKeyword = normalizeText(keyword);
-    return responses.find(response => {
-      const normalizedResponseKeyword = normalizeText(response.keyword);
-      return normalizedResponseKeyword.includes(normalizedKeyword);
-    });
-  }
-  
   const getResponse = (message) => {
-    const matchedResponse = findResponse(message);
+    const lowerCaseMessage = message.toLowerCase();
+    const matchedResponse = responses.find((response) =>
+      lowerCaseMessage.includes(response.keyword.toLowerCase())
+    );
+
     return matchedResponse ? matchedResponse.text : 'I\'m sorry, I didn\'t understand that.';
   };
 
