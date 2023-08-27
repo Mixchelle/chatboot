@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: purple; /* Cor roxa para o background */
+  padding: 10px 20px;
+  color: white;
+  
+}
+
+.logo img {
+  width: 100px; 
+  border-radius: 50%;
+}
+
+.login-button button {
+  background-color: transparent;
+  border: 1px solid white;
+  padding: 5px 10px;
+  color: white;
+  cursor: pointer;
+}
+
+

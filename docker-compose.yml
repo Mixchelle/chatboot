@@ -1,0 +1,48 @@
+version: '3.9'
+services:
+  frontend:
+    container_name: app_frontend
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./front:/app
+      - /app/node_modules
+
+  backend:
+    container_name: app_backend
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - APP_PORT=3001
+      - mysql_USER=root
+      - mysql_PASS=123456
+      - mysql_HOST=mysql
+      - mysql_PORT=3306
+    depends_on:
+      - mysql
+    volumes:
+      - ./back:/app
+      - /app/node_modules
+
+  mysql:
+    image: mysql:8.0.32
+    container_name: mysql
+    ports:
+      - 3306:33060
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=chatbot_database
+    restart: 'always'
+
+
+
+networks:
+  chat:
+
+
