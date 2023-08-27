@@ -43,12 +43,23 @@ const Home = () => {
     setConversation((prevConversation) => [...prevConversation, botMessage]);
   };
 
+  function normalizeText(text) {
+    return text
+      .toLowerCase() // Converte para minúsculas
+      .normalize('NFD') // Remove os acentos
+      .replace(/[\u0300-\u036f]/g, ''); // Remove caracteres de diacríticos
+  }
+  
+  function findResponse(keyword) {
+    const normalizedKeyword = normalizeText(keyword);
+    return responses.find(response => {
+      const normalizedResponseKeyword = normalizeText(response.keyword);
+      return normalizedResponseKeyword.includes(normalizedKeyword);
+    });
+  }
+  
   const getResponse = (message) => {
-    const lowerCaseMessage = message.toLowerCase();
-    const matchedResponse = responses.find((response) =>
-      lowerCaseMessage.includes(response.keyword.toLowerCase())
-    );
-
+    const matchedResponse = findResponse(message);
     return matchedResponse ? matchedResponse.text : 'I\'m sorry, I didn\'t understand that.';
   };
 
