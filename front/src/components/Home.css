@@ -118,14 +118,9 @@
     display: flex;
     align-items: center; 
     justify-content: space-between; 
-    padding: 10px;
-    background-color: #fff;
-    border-top: 1px solid #ccc;
-    position: absolute;
-    margin-bottom: 10px;
-    margin-top: 160%;
-    margin-bottom: 10px;
+    margin-top: 165%;
     width: 100%;
+ 
   }
 
   .chat-input input[type="text"] {
@@ -133,6 +128,7 @@
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    height: 40px;
   }
 
   .chat-input button {
@@ -142,5 +138,6 @@
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    height: 50px;
   }
 }
