@@ -101,7 +101,7 @@
 @media (max-width: 768px) {
   .chat-container {
     width: 80%;
-    height: 80%;
+    height: 90%;
     position: absolute;
     bottom: 0; /* Fixa no rodapé */
     left: 10px;
@@ -123,7 +123,7 @@
     border-top: 1px solid #ccc;
     position: fixed;
     margin-bottom: 10px;
-    margin-top: 450px;
+    margin-top: 90%;
     width: 75%;
   }
 
