@@ -71,13 +71,13 @@ const Login = () => {
         <img style={{ width: '50px', borderRadius: '50%', textAlign: 'center', justifyContent: 'center', }} src={logo} alt="logo" />
           Sign Up</h1>
         <div className="input-div">
-        <label>Login:</label>
+        <label>Senha:</label>
           <input
             className="form--input"
             type="text"
             value={login}
             onChange={handleLoginChange}
-            
+      
           />
   
              <div className="input-div">
@@ -118,4 +118,4 @@ const Login = () => {
   );
 };
 
-export default Digite seu username;
+export default Login;
