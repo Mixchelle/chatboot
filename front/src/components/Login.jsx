@@ -77,7 +77,7 @@ const Login = () => {
             type="text"
             value={login}
             onChange={handleLoginChange}
-            placeholder="Login"
+            
           />
   
              <div className="input-div">
@@ -118,4 +118,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Digite seu username;
