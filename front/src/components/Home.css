@@ -123,9 +123,9 @@
     border-top: 1px solid #ccc;
     position: absolute;
     margin-bottom: 10px;
-    margin-top: 150%;
+    margin-top: 160%;
     margin-bottom: 10px;
-    width: 75%;
+    width: 100%;
   }
 
   .chat-input input[type="text"] {
