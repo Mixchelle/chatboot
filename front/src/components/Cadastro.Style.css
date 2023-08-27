@@ -107,7 +107,7 @@ label {
   .form--submit{
     width: 100%;
     height: 65px;
+    bottom: auto;
+    top: auto;
   }
-  
-
 }
