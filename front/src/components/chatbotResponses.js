@@ -17,6 +17,14 @@ const responses = [
   { keyword: '2', text: 'As condições do empréstimo incluem uma taxa de juros competitiva e termos de pagamento flexíveis.' },
   { keyword: '3', text: 'How can I assist you further? Feel free to ask any questions.' },
   { keyword: '3', text: 'Como posso ajudar você ainda mais? Sinta-se à vontade para fazer perguntas.' },
+  { keyword: 'loan', text: 'Would you like to apply for a loan? Click on the following link: [Loan Application](https://example.com/loan-application)' },
+  { keyword: 'empréstimo', text: 'Gostaria de fazer um empréstimo? Clique no seguinte link: [Solicitação de Empréstimo](https://exemplo.com/solicitacao-emprestimo)' },
+  { keyword: 'account', text: 'Are you interested in opening an account? Click on the following link: [Open Account](https://example.com/open-account)' },
+  { keyword: 'conta', text: 'Está interessado em abrir uma conta? Clique no seguinte link: [Abrir Conta](https://exemplo.com/abrir-conta)' },
+  { keyword: 'talk to an agent', text: 'Please wait for an agent to connect with you.' },
+  { keyword: 'falar com um atendente', text: 'Por favor, aguarde até que um atendente entre em contato com você.' },
+  { keyword: 'default', text: 'I\'m sorry, I didn\'t understand that. Here are some available options:\n1. Loan\n2. Account\n3. Talk to an agent' },
+  { keyword: 'default', text: 'Desculpe, não entendi. Aqui estão algumas opções disponíveis:\n1. Empréstimo\n2. Conta\n3. Falar com um atendente' }
 ];
 
 module.exports = responses;
