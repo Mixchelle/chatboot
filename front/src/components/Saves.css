@@ -1,0 +1,31 @@
+.conversation-history {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.conversation-item {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.conversation-item p {
+  margin: 0;
+}
+
+.conversation-item button {
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.conversation-item button:hover {
+  text-decoration: underline;
+}
+
+.nav-link {
+  margin-right: 105px; 
+}

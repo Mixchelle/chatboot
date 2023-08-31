@@ -7,9 +7,10 @@ import botImage from '../img/atendente.jpeg';
 import './Home.css';
 
 const Home = () => {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('Get Start');
   const [conversation, setConversation] = useState([]);
   const [username, setUsername] = useState('');
+  const [chatFinished, setChatFinished] = useState(false);
 
   useEffect(() => {
     const savedUsername = localStorage.getItem('username');
@@ -20,6 +21,36 @@ const Home = () => {
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
+  };
+
+  const handleFinishChat = () => {
+    if (conversation.length > 0) {
+      const endChatMessage = "Chat ended.";
+      const botEndChatMessage = { user: false, text: endChatMessage };
+      setConversation((prevConversation) => [...prevConversation, botEndChatMessage]);
+      if (username) {
+        saveConversationToLocalStorage(conversation, username);
+      }
+    }
+    setChatFinished(true);
+  };
+
+  const exportConversation = () => {
+    const savedConversations = JSON.parse(localStorage.getItem('savedConversations')) || [];
+  
+    const conversationText = savedConversations.map((conversationObj, index) => {
+      const formattedDate = new Date(conversationObj.date).toLocaleString();
+      const conversationLines = conversationObj.conversation.map(msg => `[${msg.user ? 'User' : 'Bot'}][${formattedDate}] ${msg.text}`).join('\n');
+      return `Conversation ${index + 1}:\n${conversationLines}\n\n`;
+    }).join('\n');
+  
+    const blob = new Blob([conversationText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'conversation.txt';
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   const handleSendMessage = () => {
@@ -43,24 +74,39 @@ const Home = () => {
     setConversation((prevConversation) => [...prevConversation, botMessage]);
   };
 
-  function normalizeText(text) {
+  const saveConversationToLocalStorage = (conversation, username) => {
+    const savedConversations = JSON.parse(localStorage.getItem('savedConversations')) || [];
+    const currentConversation = { username, conversation, date: new Date().toISOString() };
+    savedConversations.push(currentConversation);
+    localStorage.setItem('savedConversations', JSON.stringify(savedConversations));
+  };
+
+const normalizeText = (text) => {
     return text
-      .toLowerCase() // Converte para minúsculas
-      .normalize('NFD') // Remove os acentos
-      .replace(/[\u0300-\u036f]/g, ''); // Remove caracteres de diacríticos
+      .toLowerCase() 
+      .normalize('NFD') 
+      .replace(/[\u0300-\u036f]/g, ''); 
   }
   
-  function findResponse(keyword) {
-    const normalizedKeyword = normalizeText(keyword);
-    return responses.find(response => {
-      const normalizedResponseKeyword = normalizeText(response.keyword);
-      return normalizedResponseKeyword.includes(normalizedKeyword);
-    });
+  const findResponse = (message) => {
+    const normalizedMessage = normalizeText(message);
+    for (const response of responses) {
+      for (const keyword of response.keywords) {
+        if (normalizedMessage.includes(keyword)) {
+          return response.text;
+        }
+      }
+    }
+    return getDefaultResponse();
+  }
+  
+  const getDefaultResponse = () => {
+    return "I'm sorry, I didn't understand that. How can I assist you today? ";
   }
   
   const getResponse = (message) => {
-    const matchedResponse = findResponse(message);
-    return matchedResponse ? matchedResponse.text : 'I\'m sorry, I didn\'t understand that.';
+    const botResponse = findResponse(message);
+    return botResponse;
   };
 
   return (
@@ -89,15 +135,26 @@ const Home = () => {
    </div>
           ))}
         </div>
-      <div className="chat-input">
-        <input
-          type="text"
-          value={message}
-          onChange={handleMessageChange}
-          placeholder="Type your message..."
-        />
-        <button onClick={handleSendMessage}>Send</button>
-      </div>
+        <div className="chat-input">
+  {chatFinished ? (
+    <>
+
+      <button onClick={exportConversation}>Export Conversation</button>
+     
+    </>
+  ) : (
+    <>
+      <input
+        type="text"
+        value={message}
+        onChange={handleMessageChange}
+        placeholder="Type your message..."
+      />
+      <button onClick={handleSendMessage}>Send</button>
+      <button onClick={handleFinishChat}>Finish Chat</button>
+    </>
+  )}
+</div>
      
     </div>
     </div>

@@ -52,13 +52,13 @@ const Login = () => {
     localStorage.setItem('username', login);
     navigate('/home');
 
-    const user = users.find((user) => user.username === login && user.password === password);
-    if (user) {
-      localStorage.setItem('username', login);
-      navigate('/home');
-    } else {
-      alert('Erro ao fazer login. Credenciais inválidas.');
-    }
+    // const user = users.find((user) => user.username === login && user.password === password);
+    // if (user) {
+    //   localStorage.setItem('username', login);
+    //   navigate('/home');
+    // } else {
+    //   alert('Erro ao fazer login. Credenciais inválidas.');
+    // }
   };
 
   return (
@@ -71,7 +71,7 @@ const Login = () => {
         <img style={{ width: '50px', borderRadius: '50%', textAlign: 'center', justifyContent: 'center', }} src={logo} alt="logo" />
           Sign Up</h1>
         <div className="input-div">
-        <label>Senha:</label>
+        <label>Login:</label>
           <input
             className="form--input"
             type="text"

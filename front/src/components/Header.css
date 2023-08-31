@@ -2,14 +2,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: purple; /* Cor roxa para o background */
-  padding: 10px 20px;
+  background-color: purple;
+  padding: 10px 0;
   color: white;
-  
+  width: 100%;
+  bottom: 0;
+  z-index: 1000;
 }
 
 .logo img {
-  width: 100px; 
+  width: 100px;
   border-radius: 50%;
 }
 
@@ -21,9 +23,36 @@
   cursor: pointer;
 }
 
-.sign-out-icon {
-  background-color: transparent; /* Torna o fundo do ícone transparente */
-  font-size: 1.25em; /* Ajuste o tamanho do ícone conforme necessário */
-  vertical-align: middle; /* Alinhar verticalmente com o texto */
+.navbar-toggler {
+  border: none; 
+  background-color: transparent; 
+  color: white; 
+  font-size: 1.5em; 
 }
 
+.nav-menu a {
+  text-decoration: none;
+  color: white; 
+  padding: 5px 10px; 
+  text-align: center;
+  font-size: 14px;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.nav-link {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.user-icon{
+color: aliceblue;
+}
+
+.container{
+  width: 90%;
+}
